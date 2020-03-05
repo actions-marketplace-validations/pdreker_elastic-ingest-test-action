@@ -1,0 +1,19 @@
+name: 'elastic-ingest-test'
+description: "Tests elasticsearch ingest pipelines against given testcases"
+author: 'pdreker'
+branding:
+  icon: 'database'
+  color: 'blue'
+inputs:
+  # See https://hub.docker.com/_/elasticsearch for supported versions
+  elastic version:
+    description: 'Version of Elasticsearch to use'
+    required: false
+    default: '7.5.2'
+  testdir:
+    description: Directory containing the tests and pipeline definitions
+    required: true
+    default: tests
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
