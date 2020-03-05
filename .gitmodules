@@ -1,0 +1,4 @@
+[submodule "elasticcheck"]
+	path = elasticcheck
+	url = git@github.com:pdreker/elasticcheck.git
+	branch = master
