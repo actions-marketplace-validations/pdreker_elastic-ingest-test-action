@@ -8,7 +8,7 @@ sh -c "$docker_run"
 
 # Wait 100s for elastic to come up
 echo "WAITING for elasticsearch to become live"
-for i in seq 1 10; do
+for i in $(seq 1 10); do
     curl -s http://localhost:9200
     if [ $? -eq 0 ]; then
         echo "SUCCESS elasticsearch live"
