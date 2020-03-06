@@ -34,6 +34,7 @@ for TEST in $GITHUB_WORKSPACE/$GITHUB_REPOSITORY/$INPUT_TESTDIR/test*.json; do
     python3 /elasticcheck.py http://localhost:9200 $TEST | grep -qv FAILED
     if [ $? -ne 0 ]; then
         RESULT=2
+    fi
 done
 
 if [ $RESULT -eq 0 ]; then
