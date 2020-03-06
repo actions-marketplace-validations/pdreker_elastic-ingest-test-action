@@ -44,8 +44,13 @@ done
 
 if [ $RESULT -eq 0 ]; then
     echo ::set-output name=RESULT::SUCCESS
+    echo SUCCESS
 elif [ $RESULT -eq 1 ]; then
     echo ::set-output name=RESULT::PIPEFAILED
+    echo PIPEFAILED
+    exit 1
 elif [ $RESULT -eq 2 ]; then
     echo ::set-output name=RESULT::FAILED
+    echo FAILED
+    exit 2
 fi
