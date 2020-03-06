@@ -39,8 +39,8 @@ done
 
 if [ $RESULT -eq 0 ]; then
     echo ::set-output name=RESULT::SUCCESS
-elif [ $RESULT -eq 1 ]
+elif [ $RESULT -eq 1 ]; then
     echo ::set-output name=RESULT::PIPEFAILED
-elif [ $RESULT -eq 2 ]
+elif [ $RESULT -eq 2 ]; then
     echo ::set-output name=RESULT::FAILED
 fi
