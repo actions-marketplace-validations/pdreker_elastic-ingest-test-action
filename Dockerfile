@@ -1,6 +1,7 @@
 FROM python:3-alpine
 
-RUN apk add curl py3-requests
+RUN apk add curl \
+    && pip install requests
 COPY elasticcheck.py /elasticcheck.py
 
 COPY entrypoint.sh /entrypoint.sh
