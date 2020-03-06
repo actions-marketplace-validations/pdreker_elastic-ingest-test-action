@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check elastic pipelines
         id: check_ingest
-        uses: pdreker/elastic-ingest-test-action@master
+        uses: pdreker/elastic-ingest-test-action@v1
         with:
           elastic_host: my-elastic
           testdir: 'examples'
