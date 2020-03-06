@@ -20,6 +20,7 @@ for i in $(seq 1 10); do
 done
 
 docker logs elastic
+netstat -tulpen
 
 ls -lR $GITHUB_WORKSPACE
 
