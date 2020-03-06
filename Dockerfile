@@ -1,6 +1,6 @@
 FROM docker:stable
 
-RUN apk add python3 py3-requests
+RUN apk add python3 py3-requests curl
 COPY elasticcheck.py /elasticcheck.py
 
 COPY entrypoint.sh /entrypoint.sh
