@@ -17,7 +17,10 @@ inputs:
   elastic_port:
     description: port to use for your elasticsearch service container
     required: false
-    default: 9200
+    default: "9200"
+  pipelines:
+    description: Space separated string of pipeline definition files
+    required: true
   testdir:
     description: Directory containing the tests and pipeline definitions
     required: true

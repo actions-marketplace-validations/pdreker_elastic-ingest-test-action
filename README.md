@@ -22,6 +22,10 @@ The hostname where elasticsearch can be reached. If using a service container th
 
 The port where elasticsearch can be reached. Defaults to `9200`
 
+### `pipelines`
+
+**REQUIRED** A space separated list of files declaring elastic pipelines. The paths are relative to your repository and the pipelines in elasticsearch will be named according to the filename after removing path components and the .json suffix - `tests/my-pipeline.json` becomes `my-pipeline`.
+
 ### `testdir``
 
 Directory containing the pipeline and test definitions. Pipeline files are all file matching `pipe*.json`, tests are all files matching `test*.json``

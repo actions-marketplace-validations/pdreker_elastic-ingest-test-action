@@ -23,15 +23,15 @@ fi
 RESULT=0
 
 echo "Deploying pipes from $GITHUB_WORKSPACE/$INPUT_TESTDIR"
-for PIPE in $GITHUB_WORKSPACE/$INPUT_TESTDIR/pipe*.json; do
-    python3 /elasticcheck.py --prepare http://$INPUT_ELASTIC_HOST:$INPUT_ELASTIC_PORT $PIPE
+for PIPE in $INPUT_PIPELINES; do
+    python3 /elasticcheck.py --prepare http://$INPUT_ELASTIC_HOST:$INPUT_ELASTIC_PORT $GITHUB_WORKSPACE/$PIPE
     if [ $? -ne 0 ]; then
         RESULT=1
     fi
 done
 
 echo "Running tests from $GITHUB_WORKSPACE/$INPUT_TESTDIR"
-for TEST in $GITHUB_WORKSPACE/$INPUT_TESTDIR/test*.json; do
+for TEST in $GITHUB_WORKSPACE/$INPUT_TESTDIR/*.json; do
     python3 /elasticcheck.py http://$INPUT_ELASTIC_HOST:$INPUT_ELASTIC_PORT $TEST
     if [ $? -ne 0 ]; then
         RESULT=2
