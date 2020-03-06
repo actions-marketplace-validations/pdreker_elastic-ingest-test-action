@@ -10,6 +10,14 @@ inputs:
     description: 'Version of Elasticsearch to use'
     required: false
     default: '7.5.2'
+  elastic_host:
+    description: hostname of your elasticsearch service container (name of service)
+    required: false
+    default: 'elasticsearch'
+  elastic_port:
+    description: port to use for your elasticsearch service container
+    required: false
+    default: 9200
   testdir:
     description: Directory containing the tests and pipeline definitions
     required: true

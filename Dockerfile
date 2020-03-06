@@ -1,6 +1,6 @@
-FROM docker:stable
+FROM python:3-alpine
 
-RUN apk add python3 py3-requests curl net-tools
+RUN apk add curl py3-requests
 COPY elasticcheck.py /elasticcheck.py
 
 COPY entrypoint.sh /entrypoint.sh
