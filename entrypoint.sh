@@ -27,7 +27,7 @@ RESULT=0
 
 echo "Deploying pipes from $GITHUB_WORKSPACE/$INPUT_TESTDIR"
 for PIPE in $GITHUB_WORKSPACE/$INPUT_TESTDIR/pipe*.json; do
-    python3 /elasticcheck.py --prepare http://localhost:9200 $PIPE | grep -qv FAILED
+    python3 /elasticcheck.py --prepare http://localhost:9200 $PIPE
     if [ $? -ne 0 ]; then
         RESULT=1
     fi
@@ -35,7 +35,7 @@ done
 
 echo "Running tests from $GITHUB_WORKSPACE/$INPUT_TESTDIR"
 for TEST in $GITHUB_WORKSPACE/$INPUT_TESTDIR/test*.json; do
-    python3 /elasticcheck.py http://localhost:9200 $TEST | grep -qv FAILED
+    python3 /elasticcheck.py http://localhost:9200 $TEST
     if [ $? -ne 0 ]; then
         RESULT=2
     fi
