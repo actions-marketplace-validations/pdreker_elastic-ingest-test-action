@@ -56,18 +56,19 @@ else:
         print(f'FAILED: {r.json()}')
         failed = True
 
-    for key in assertions:
-        # Check for existence of asserted key
-        if key not in response:
-            print(f'FAILED: {cmdline.pipefile} Asserted key "{key}" was not found in response.')
-            failed = True
-        else:
-            # check that key value exactly matches the assertion
-            if response[key] != assertions[key]:
-                print(f'FAILED: {cmdline.pipefile} Content of asserted key "{key} does not match: Asserted: "{assertions[key]}", found: "{response[key]}"')
+    if not failed:
+        for key in assertions:
+            # Check for existence of asserted key
+            if key not in response:
+                print(f'FAILED: {cmdline.pipefile} Asserted key "{key}" was not found in response.')
                 failed = True
             else:
-                print(f'SUCCESS: {cmdline.pipefile} Assertion for key {key} matched.')
+                # check that key value exactly matches the assertion
+                if response[key] != assertions[key]:
+                    print(f'FAILED: {cmdline.pipefile} Content of asserted key "{key} does not match: Asserted: "{assertions[key]}", found: "{response[key]}"')
+                    failed = True
+                else:
+                    print(f'SUCCESS: {cmdline.pipefile} Assertion for key {key} matched.')
 
     if failed:
         sys.exit(1)
