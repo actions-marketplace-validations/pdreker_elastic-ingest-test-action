@@ -6,7 +6,7 @@ You will have to provide your own elasticsearch container by specifying a servic
 
 ## Limitations
 
-Currently neither support https, nor authentication. As we are normally running against service containers, this should not be a problem.
+Currently neither supports https, nor authentication. As we are normally running against service containers, this should not be a problem.
 
 ## Inputs
 
