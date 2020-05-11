@@ -39,15 +39,23 @@ else:
     r = requests.post(url, json=elasticinput)
     if r.status_code >= 200 and r.status_code < 300:
         print(f'SUCCESS: {cmdline.pipefile} Simulating pipeline {pipeName} returned {r.status_code}')
-        print(f'DEBUG: {r.json()}')
     else:
         print(f'FAILED: {cmdline.pipefile} Simuating pipeline {pipeName} returned {r.status_code} - {r.json()}')
         sys.exit(1)
 
-    # We'll only pass in one doc, so we will only get one doc out
-    response = r.json()["docs"][0]["doc"]["_source"]
+    if "doc" in r.json()["docs"][0]:
+        # We'll only pass in one doc, so we will only get one doc out
+        response = r.json()["docs"][0]["doc"]["_source"]
+        failed = False
+    elif "error" in r.json()["docs"][0]:
+        print(f'FAILED: Simulating pipeline returned error:')
+        print(f'FAILED: {r.json()}')
+        failed = True
+    else:
+        print(f'FAILED: Simulating pipline returned JSON document with neither a "doc" not an "error" key:')
+        print(f'FAILED: {r.json()}')
+        failed = True
 
-    failed = False
     for key in assertions:
         # Check for existence of asserted key
         if key not in response:
