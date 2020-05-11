@@ -39,7 +39,7 @@ else:
     r = requests.post(url, json=elasticinput)
     if r.status_code >= 200 and r.status_code < 300:
         print(f'SUCCESS: {cmdline.pipefile} Simulating pipeline {pipeName} returned {r.status_code}')
-        print(f'DEBUG: {r.json}')
+        print(f'DEBUG: {r.json()}')
     else:
         print(f'FAILED: {cmdline.pipefile} Simuating pipeline {pipeName} returned {r.status_code} - {r.json()}')
         sys.exit(1)
