@@ -3,9 +3,11 @@ import json
 import argparse
 import sys
 import os
+from objectpath import *
 
 parser = argparse.ArgumentParser(description='Check Elasticsearch Pipelines against testcases')
 parser.add_argument('--prepare', action='store_true', help='send specified pipelines to elasticsearch')
+parser.add_argument('--debug', action='store_true', help='enable debugging output')
 parser.add_argument('elasticurl', metavar='ELASTICURL', help='URL to elasticsearch server')
 parser.add_argument('pipefile', metavar='FILE', help='URL to elasticsearch server')
 cmdline = parser.parse_args()
@@ -57,14 +59,18 @@ else:
         failed = True
 
     if not failed:
+        if cmdline.debug:
+            print(f'DEBUG: {r.json()["docs"][0]}')
+        objtree = Tree(response)
         for key in assertions:
             # Check for existence of asserted key
-            if key not in response:
+            val = objtree.execute(f'$.{key}')
+            if not val:
                 print(f'FAILED: {cmdline.pipefile} Asserted key "{key}" was not found in response.')
                 failed = True
             else:
                 # check that key value exactly matches the assertion
-                if response[key] != assertions[key]:
+                if val != assertions[key]:
                     print(f'FAILED: {cmdline.pipefile} Content of asserted key "{key} does not match: Asserted: "{assertions[key]}", found: "{response[key]}"')
                     failed = True
                 else:
