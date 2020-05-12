@@ -12,7 +12,7 @@ Currently neither supports https, nor authentication. As we are normally running
 
 ### `elastic_version`
 
-The version tag of elasticsearch to use. See <https://hub.docker.com/_/elasticsearch> for available version. Defaults to `7.5.2`. Default may change (within the 7.x.x major version) without notice, so if you need this to be stable, specify your version explicitly.
+The version tag of elasticsearch to use. See <https://hub.docker.com/_/elasticsearch> for available version. Defaults to `7.6.2`. Default may change (within the 7.x.x major version) without notice, so if you need this to be stable, specify your version explicitly.
 
 ### `elastic_host`
 
@@ -28,7 +28,7 @@ The port where elasticsearch can be reached. Defaults to `9200`
 
 ### `testdir`
 
-Directory containing the pipeline and test definitions. Pipeline files are all file matching `pipe*.json`, tests are all files matching `test*.json``
+Directory containing the test definitions. All files in this folder are automatically tested against the specified pipeline inside the respective file.
 
 ## Outputs
 
